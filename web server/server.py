@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect
 app = Flask(__name__)
 
 
@@ -6,18 +6,15 @@ app = Flask(__name__)
 def my_homepage():
     return render_template('index.html')
 
-@app.route('/index.html')
-def my_homepage2():
-    return render_template('index.html')
+@app.route('/<string:page_name>')
+def my_homepage2(page_name):
+    return render_template(page_name)
 
-@app.route('/projects.html')
-def my_projects():
-    return render_template('projects.html')
-
-@app.route('/about.html')
-def about():
-    return render_template('about.html')
-
-@app.route('/contact.html')
-def my_contact():
-    return render_template('contact.html')
+@app.route('/submit_form', methods=['POST', 'GET'])
+def submit_form():
+    if request.method =='POST':
+        data = request.form.to_dict()
+        print(data)
+        return redirect('/thankyou.html')
+    else:
+        return 'something went wrong'
