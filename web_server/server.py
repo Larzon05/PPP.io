@@ -15,19 +15,6 @@ def my_homepage():
 def my_homepage2(page_name):
     return render_template(page_name)
 
-# @app.route('/submit_form', methods=['POST', 'GET'])
-# def submit_form():
-#     if request.method =='POST':
-#         try:
-#             data = request.form.to_dict()
-#             #write_to_file(data)
-#             write_to_csv(data)
-#             return redirect('/thankyou.html')
-#         except:
-#             'Did not save to database'
-#     else:
-#         return 'something went wrong'
-
 
 def write_to_file(data):
     with open('database.txt', mode='a', encoding='utf-8') as db:
